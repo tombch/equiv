@@ -19,5 +19,5 @@ def s1(p, q):
 def s2(p, q):
     return (not p) and (not q)
 
-print(equiv(or1, or2)) # True
+print(equiv(s1, s2)) # True
 ```

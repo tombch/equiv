@@ -56,10 +56,10 @@ print(equiv(p_, id2)) # True
 
 # These formulas are logically equivalent
 def f1(p, q, r):
-    return (not p and not q and not r) or (not p and not q and r) or (p and q and not r ) or (p and q and r)
+    return ((not p) and (not q) and (not r)) or ((not p) and (not q) and r) or (p and q and (not r)) or (p and q and r)
 
 def f2(p, q):
-    return (not p and not q) or (p and q)
+    return ((not p) and (not q)) or (p and q)
 
 print(equiv(f1, f2)) # True
 
@@ -73,17 +73,26 @@ def implies2(p, q):
 print(equiv(implies1, implies2)) # True
 
 
+def s3(p, q):
+    return not implies1(p, q)
+
+def s4(p, q):
+    return p and (not q)
+
+print(equiv(s3, s4)) # True
+
+
 def tautology1(p):
-    return p or not p
+    return p or (not p)
 
 def tautology2(p, q):
-    return (p or not p) and (q or not q)
+    return (p or (not p)) and (q or (not q))
 
 def contradiction1(p):
-    return not p and p
+    return (not p) and p
 
 def contradiction2(p, q):
-    return not ((not (not p and p)) or (not (not q and q)))
+    return not ((not ((not p) and p)) or (not ((not q) and q)))
 
 print(equiv(tautology1, tautology2)) # True
 print(equiv(contradiction1, contradiction2)) # True
